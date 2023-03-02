@@ -1,0 +1,46 @@
+[
+    {
+      "Name": "Hội Báo Chuyên Nghiệp",
+      "Max": 40,
+      "Level": 2,
+      "Students": [
+        {
+          "fullName": "Nguyen Van A",
+          "age": 10,
+          "sex": 0
+        },
+        {
+          "fullName": "Trinh Thị C",
+          "age": 20,
+          "sex": 1
+        },
+        {
+          "fullName": "Đỗ Văn B",
+          "age": 99,
+          "sex": 1
+        }
+      ]
+    },
+    {
+      "Name": "Hội Lương Có  Chứng Chỉ",
+      "Max": 40,
+      "Level": 2,
+      "Students": [
+        {
+          "fullName": "Phạm Cẩm D",
+          "age": 33,
+          "sex": 1
+        },
+        {
+          "fullName": "La Tấn E",
+          "age": 20,
+          "sex": 0
+        },
+        {
+          "fullName": "Phạm G",
+          "age": 99,
+          "sex": 1
+        }
+      ]
+    }
+  ]
