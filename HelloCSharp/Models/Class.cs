@@ -31,7 +31,7 @@ namespace HelloCSharp.Models
 			{
 				new Class
 				{
-					Name = "Hội Báo Chuyên Nghiệp",
+					Name = "Lớp Học Nấu Không Ai Ăn",
 					Level = Level.Professional,
 					Max = 40,
 					Students = new List<Student>
@@ -43,7 +43,7 @@ namespace HelloCSharp.Models
 				},
                 new Class
                 {
-                    Name = "Hội Lương Có Chứng Chỉ",
+                    Name = "Lớp Học Code Để Gài Bug",
                     Level = Level.Professional,
                     Max = 40,
                     Students = new List<Student>
@@ -59,11 +59,11 @@ namespace HelloCSharp.Models
         public override string ToString()
         {
 			var info = $"Class : {this.GetHashCode()}" +
-				$" ➜ Name : {Name}" +
-				$" ➜ Max: {Max}" +
-				$" ➜ Level: {Level}" +
-				$" ➜ Students : " +
-				$"{ShowAllStudents()}";
+				$"\nName : {Name}" +
+				$"\nMax: {Max}" +
+				$"\nLevel: {Level}" +
+				$"\nStudents : " +
+				$"{ShowAllStudents()}\n";
 
 			string ShowAllStudents()
 			{

@@ -1,6 +1,6 @@
 [
     {
-      "Name": "Hội Báo Chuyên Nghiệp",
+      "Name": "Lớp Học Nấu Không Ai Ăn",
       "Max": 40,
       "Level": 2,
       "Students": [
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "Name": "Hội Lương Có  Chứng Chỉ",
+      "Name": "Lớp Học Code Để Gài Bug",
       "Max": 40,
       "Level": 2,
       "Students": [

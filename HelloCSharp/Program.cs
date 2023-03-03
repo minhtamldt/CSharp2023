@@ -9,69 +9,66 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("=========== SYSTEM JSON TEXT ===========");
         Console.WriteLine("Select Menu : ");
-        Console.WriteLine("1. Demo Serialize");
-        Console.WriteLine("2. Demo Deserialize");
+        Console.WriteLine("1. Demo Serialize Basic");
+        Console.WriteLine("2. Demo Deserialize Basic");
         Console.WriteLine("========================================");
+        Console.ResetColor(); 
         do
         {
-            Console.WriteLine("▶ Please the functions are on the menu : ");
-            var inputValue =  Console.ReadLine();
-            var parsed = int.TryParse(inputValue, out int itemSelected);
-            if(!parsed)
+            try
             {
-                Console.WriteLine("❌  Input menu not vaild. Please retry !");
-                continue;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("▶ Please the functions are on the menu : ");
+                var readKey = Console.ReadLine();
+                var parsed = int.TryParse(readKey, out int optionSelected);
+                ProcessDemo(optionSelected);
             }
-
-            if(itemSelected > 2)
+            catch (Exception ex)
             {
-                Console.WriteLine("❌  Input menu not vaild. Please retry !");
-                continue;
+                Console.WriteLine($"❌  Error! An error occurred: {ex.Message}. Please try again later!");
             }
-
-            ProcessDemo(itemSelected);
-       
-            Console.WriteLine("Do you want to choose another function ? y/n : ");
-            var resultYN = Console.ReadLine();
-            if (resultYN.Contains("y"))
-                continue;
-            break;
 
         } while (true);
         
     }
 
-    private static void ProcessDemo(int itemSelected)
+    private static void ProcessDemo(int optionSelected)
     {
-       switch(itemSelected)
+        if (optionSelected > 2)
+            throw new IndexOutOfRangeException("The current App has only 2 functions !");
+
+       switch(optionSelected)
         {
             case 1:
-                var classList = Class.MockClass();
-                var options = new JsonSerializerOptions
                 {
-                    WriteIndented = true, //format beautiful json
-                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping //support display vietnamese on console
-                };
-                var jsonResult = JsonSerializer.Serialize<List<Class>>(classList, options);
-                Console.WriteLine("\n▶ ▶ ▶  START : Serialize Execute\n");
-                Console.WriteLine($"{jsonResult}");
-                Console.WriteLine("\n▶ ▶ ▶  END : Serialize Execute : \n");
+                    var classList = Class.MockClass();
+                    var options = new JsonSerializerOptions
+                    {
+                        //format beautiful json
+                        WriteIndented = true,
+                        //support display vietnamese on console
+                        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                    };
+                    var jsonResult = JsonSerializer.Serialize<List<Class>>(classList, options);
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("\nSerialize ✅\n");
+                    Console.WriteLine($"{jsonResult}");
+                }
                 break;
             case 2:
-                Console.WriteLine("\n▶ ▶ ▶  START : Deserialize Execute\n");
-
-                var optionsDeserialize = new JsonSerializerOptions
                 {
-                    WriteIndented = true, //format beautiful json
-                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping //support display vietnamese on console
-                };
+                    Console.WriteLine("\n Deserialize ✅\n");
 
-                try
-                {
-                    using var fs = File.Open("../../../Resources/data.json", FileMode.Open);
-                    Console.WriteLine("\n✅  Load file json successfully \n");
+                    var optionsDeserialize = new JsonSerializerOptions
+                    {
+                        WriteIndented = true, //format beautiful json
+                        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping //support display vietnamese on console
+                    };
+
+                    var fs = File.Open("../../../Resources/data.json", FileMode.Open);
                     var modelResults = JsonSerializer.Deserialize<List<Class>>(fs);
 
                     foreach (var model in modelResults)
@@ -79,13 +76,7 @@ class Program
                         Console.WriteLine(model.ToString());
                     }
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"\n Load file was failed : {ex.Message} !");
-                    return;
-                }
-
-                Console.WriteLine("\n▶ ▶ ▶  END : Deserialize Execute\n");
+                
                 break;
         }    
     }
